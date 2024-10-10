@@ -11,23 +11,23 @@ body {
     margin-right: auto;
     outline: 2px solid black;
     padding: 40px;
+    border-radius: 15px;
 }
 
 .displays {
     border: 2px solid black;
     padding: 5px;
+    border-radius: 10px;
 }
 
 .displays div {
-    /* outline: 2px solid black; */
     height: 70px;
+    font-size: 50px;
 }
 
 #keys {
-    /* outline : 2px solid black; */
     height: 515px;
     margin-top: 40px;
-    /* padding: 10px; */
 
     display: flex;
     flex-wrap: wrap;
