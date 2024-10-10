@@ -82,7 +82,7 @@ buttons.forEach((button) => {
 			currentInputDisplay.textContent = ''
 
 			if (firstNumber && operator === '/' && secondNumber === 0) {
-				accumulatedDisplay.textContent = 'NEJ'
+				accumulatedDisplay.textContent = 'BOOM! You divided by zero!'
 			} else {
 				// Round answer if not an integer
 				const result = operate(firstNumber, operator, secondNumber)
