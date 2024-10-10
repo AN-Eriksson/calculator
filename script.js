@@ -55,20 +55,30 @@ const currentInputDisplay = document.querySelector('#currentInputDisplay')
 const buttons = document.querySelectorAll('button')
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
-    if (button.classList.contains('number')) {
-      accumulatedDisplay.textContent += button.textContent
+    if (button.classList.contains('number')) {      
       currentInputDisplay.textContent += button.textContent
+      accumulatedDisplay.textContent += button.textContent
 
-    } else if (button.classList.contains('operator')) {
+    } else if (button.classList.contains('operator') && !operator) {
       firstNumber = Number(currentInputDisplay.textContent)
+      operator = button.textContent
+
+      currentInputDisplay.textContent = ''      
+      accumulatedDisplay.textContent += ` ${operator} `    
+
+    } else if (button.classList.contains('operator') && operator) {
+      secondNumber = Number(currentInputDisplay.textContent)
+      accumulatedDisplay.textContent = operate(firstNumber, operator, secondNumber)
+      firstNumber = operate(firstNumber, operator, secondNumber)
       currentInputDisplay.textContent = ''
       operator = button.textContent
-      accumulatedDisplay.textContent += ` ${operator} `    
+      accumulatedDisplay.textContent += ` ${operator} ` 
+      operator = bitton.textContent
+      currentInputDisplay.textContent = ''
 
     } else if (button.classList.contains('equals')) {
       secondNumber = Number(currentInputDisplay.textContent)
       currentInputDisplay.textContent = ''
-
       accumulatedDisplay.textContent = operate(firstNumber, operator, secondNumber)
       
     } else if (button.classList.contains('clear')) {
@@ -77,7 +87,6 @@ buttons.forEach((button) => {
       firstNumber = ''
       secondNumber = ''
       operator = ''
-
     }
 
 
