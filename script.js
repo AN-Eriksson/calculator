@@ -60,7 +60,12 @@ buttons.forEach((button) => {
       accumulatedDisplay.textContent += button.textContent
 
     } else if (button.classList.contains('operator') && !operator) {
-      firstNumber = Number(currentInputDisplay.textContent)
+
+      if (!firstNumber) {      
+        firstNumber = Number(currentInputDisplay.textContent)
+      } else {
+        secondNumber = Number(currentInputDisplay.textContent)
+      }
       operator = button.textContent
 
       currentInputDisplay.textContent = ''      
@@ -73,13 +78,16 @@ buttons.forEach((button) => {
       currentInputDisplay.textContent = ''
       operator = button.textContent
       accumulatedDisplay.textContent += ` ${operator} ` 
-      operator = bitton.textContent
+      operator = button.textContent
       currentInputDisplay.textContent = ''
 
     } else if (button.classList.contains('equals')) {
       secondNumber = Number(currentInputDisplay.textContent)
       currentInputDisplay.textContent = ''
       accumulatedDisplay.textContent = operate(firstNumber, operator, secondNumber)
+      firstNumber = operate(firstNumber, operator, secondNumber)
+      secondNumber = ''
+      operator = ''
       
     } else if (button.classList.contains('clear')) {
       currentInputDisplay.textContent = ''
