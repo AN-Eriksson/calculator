@@ -51,7 +51,7 @@ const currentInputDisplay = document.querySelector('#currentInputDisplay')
 
 
 
-// Buttons
+// Buttons and logic
 const buttons = document.querySelectorAll('button')
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
@@ -84,7 +84,12 @@ buttons.forEach((button) => {
     } else if (button.classList.contains('equals')) {
       secondNumber = Number(currentInputDisplay.textContent)
       currentInputDisplay.textContent = ''
-      accumulatedDisplay.textContent = operate(firstNumber, operator, secondNumber)
+
+      // Round answer if not an integer
+      const result = operate(firstNumber, operator, secondNumber)
+      accumulatedDisplay.textContent = Number.isInteger(result) ? result : result.toFixed(10)
+
+
       firstNumber = operate(firstNumber, operator, secondNumber)
       secondNumber = ''
       operator = ''
@@ -96,8 +101,6 @@ buttons.forEach((button) => {
       secondNumber = ''
       operator = ''
     }
-
-
 
   })
 
